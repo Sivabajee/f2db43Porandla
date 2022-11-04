@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  h1= title
+  - var result = [{"mercedes_benz_luxurious_name":"black","mercedes_benz_tire_size":250,"mercedes_benz_High_Beam_type":"all-season"},{"mercedes_benz_luxurious_name":"black","mercedes_benz_tire_size":200,"mercedes_benz_High_Beam_type":"Low"},{"mercedes_benz_luxurious_name":"white car","mercedes_benz_tire_size":280,"mercedes_benz_High_Beam_type":"low"}]
+  div.container-fluid
+     div.row
+        each item,index in result
+            div.col-sm-2(onclick=`buy(${index})`) mercedes_benz_luxurious_name: #{item["mercedes_benz_luxurious_name"]}  <br>  mercedes_benz_tire_size: #{item["mercedes_benz_tire_size"]} <br> mercedes_benz_High_Beam_type: #{item["mercedes_benz_High_Beam_type"]} 
+  script.
+      function buy(index){
+         alert("you purchased item "+(index+1))
+      }
