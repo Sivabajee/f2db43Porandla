@@ -2,7 +2,7 @@ extends layout
 
 block content
   h1= title
-  - var result = [{"mercedes_benz_luxurious_name":"black","mercedes_benz_tire_size":250,"mercedes_benz_High_Beam_type":"all-season"},{"mercedes_benz_luxurious_name":"black","mercedes_benz_tire_size":200,"mercedes_benz_High_Beam_type":"Low"},{"mercedes_benz_luxurious_name":"white car","mercedes_benz_tire_size":280,"mercedes_benz_High_Beam_type":"low"}]
+  - var result = results 
   div.container-fluid
      div.row
         each item,index in result
