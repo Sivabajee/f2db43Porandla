@@ -10,4 +10,6 @@ const mercedes_benz_controlers= require('../controllers/mercedes_benz');
 var router = express.Router();
 /* GET costumes */
 router.get('/', mercedes_benz_controlers.mercedes_benz_view_all_Page );
+// GET request for one costume. 
+router.get('/mercedes_benz/:id', mercedes_benz_controlers.mercedes_benz_detail); 
 module.exports = router;

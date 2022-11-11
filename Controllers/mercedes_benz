@@ -1,51 +1,59 @@
 var mercedes_benz = require('../models/mercedes_benz');
 // List of all Costumes
-exports.mercedes_benz_list = function(req, res) {
- res.send('NOT IMPLEMENTED: mercedes_benz list');
+exports.mercedes_benz_list = function (req, res) {
+    res.send('NOT IMPLEMENTED: mercedes_benz list');
 };
 // for a specific Costume.
-exports.mercedes_benz_detail = function(req, res) {
- res.send('NOT IMPLEMENTED: mercedes_benz detail: ' + req.params.id);
+// for a specific Costume. 
+exports.mercedes_benz_detail = async function (req, res) {
+    console.log("detail" + req.params.id)
+    try {
+        result = await mercedes_benz.findById(req.params.id)
+        res.send(result)
+    } catch (error) {
+        res.status(500)
+        res.send(`{"error": document for id ${req.params.id} not found`);
+    }
 };
 // Handle Costume create on POST.
-exports.mercedes_benz_create_post = function(req, res) {
- res.send('NOT IMPLEMENTED: mercedes_benz create POST');
+exports.mercedes_benz_create_post = function (req, res) {
+    res.send('NOT IMPLEMENTED: mercedes_benz create POST');
 };
 // Handle Costume delete form on DELETE.
-exports.mercedes_benz_delete = function(req, res) {
- res.send('NOT IMPLEMENTED: mercedes_benz delete DELETE ' + req.params.id);
+exports.mercedes_benz_delete = function (req, res) {
+    res.send('NOT IMPLEMENTED: mercedes_benz delete DELETE ' + req.params.id);
 };
 // Handle Costume update form on PUT.
-exports.mercedes_benz_update_put = function(req, res) {
- res.send('NOT IMPLEMENTED: mercedes_benz update PUT' + req.params.id);
+exports.mercedes_benz_update_put = function (req, res) {
+    res.send('NOT IMPLEMENTED: mercedes_benz update PUT' + req.params.id);
 };
 // VIEWS
 
-   // List of all Costumes
-exports.mercedes_benz_list = async function(req, res) {
-    try{
-    themercedes_benz = await mercedes_benz.find();
-    res.send(themercedes_benz);
+// List of all Costumes
+exports.mercedes_benz_list = async function (req, res) {
+    try {
+        themercedes_benz = await mercedes_benz.find();
+        res.send(themercedes_benz);
     }
-    catch(err){
-    res.status(500);
-    res.send(`{"error": ${err}}`);
+    catch (err) {
+        res.status(500);
+        res.send(`{"error": ${err}}`);
     }
-   };
-   // VIEWS
+};
+// VIEWS
 // Handle a show all view
-exports.mercedes_benz_view_all_Page = async function(req, res) {
-    try{
-    themercedes_benz = await mercedes_benz.find();
-    res.render('mercedes_benz', { title: 'mercedes_benz Search Results', results: themercedes_benz });
+exports.mercedes_benz_view_all_Page = async function (req, res) {
+    try {
+        themercedes_benz = await mercedes_benz.find();
+        res.render('mercedes_benz', { title: 'mercedes_benz Search Results', results: themercedes_benz });
     }
-    catch(err){
-    res.status(500);
-    res.send(`{"error": ${err}}`);
+    catch (err) {
+        res.status(500);
+        res.send(`{"error": ${err}}`);
     }
-   };
-   // Handle Costume create on POST.
-exports.mercedes_benz_create_post = async function(req, res) {
+};
+// Handle Costume create on POST.
+exports.mercedes_benz_create_post = async function (req, res) {
     console.log(req.body)
     let document = new mercedes_benz();
     // We are looking for a body, since POST does not have query parameters.
@@ -55,12 +63,31 @@ exports.mercedes_benz_create_post = async function(req, res) {
     document.mercedes_benz_luxurious_name = req.body.mercedes_benz_luxurious_name;
     document.mercedes_benz_tire_size = req.body.mercedes_benz_tire_size;
     document.mercedes_benz_High_Beam_type = req.body.mercedes_benz_High_Beam_type;
-    try{
-    let result = await document.save();
-    res.send(result);
+    try {
+        let result = await document.save();
+        res.send(result);
     }
-    catch(err){
-    res.status(500);
-    res.send(`{"error": ${err}}`);
+    catch (err) {
+        res.status(500);
+        res.send(`{"error": ${err}}`);
     }
 }
+// Handle mercedes_benz update form on PUT. 
+exports.mercedes_benz_update_put = async function (req, res) {
+    console.log(`update on id ${req.params.id} with body 
+${JSON.stringify(req.body)}`)
+    try {
+        let toUpdate = await mercedes_benz.findById(req.params.id)
+        // Do updates of properties 
+        if (req.body.mercedes_benz_luxurious_name) toUpdate.mercedes_benz_luxurious_name = req.body.mercedes_benz_luxurious_name;
+        if (req.body.mercedes_benz_tire_size) toUpdate.mercedes_benz_tire_size = req.body.mercedes_benz_tire_size;
+        if (req.body.mercedes_benz_High_Beam_type) toUpdate.mercedes_benz_High_Beam_type = req.body.mercedes_benz_High_Beam_type;
+        let result = await toUpdate.save();
+        console.log("Sucess " + result)
+        res.send(result)
+    } catch (err) {
+        res.status(500)
+        res.send(`{"error": ${err}: Update for id ${req.params.id} 
+failed`);
+    }
+}; 
