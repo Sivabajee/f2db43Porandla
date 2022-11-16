@@ -18,5 +18,6 @@ router.get('/detail', mercedes_benz_controlers.mercedes_benz_view_one_Page);
 router.get('/create', mercedes_benz_controlers.mercedes_benz_create_Page); 
 /* GET create update page */ 
 router.get('/update', mercedes_benz_controlers.mercedes_benz_update_Page); 
- 
+/* GET delete mercedes_benz page */ 
+router.get('/delete', mercedes_benz_controlers.mercedes_benz_delete_Page);
 module.exports = router;

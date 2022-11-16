@@ -20,15 +20,3 @@ router.get('/mercedes_benz', merecedes_benz_controller.mercedes_benz_list);
 module.exports = router;
 
 
-// Handle Costume delete on DELETE. 
-exports.costume_delete = async function(req, res) { 
-    console.log("delete "  + req.params.id) 
-    try { 
-        result = await Costume.findByIdAndDelete( req.params.id) 
-        console.log("Removed " + result) 
-        res.send(result) 
-    } catch (err) { 
-        res.status(500) 
-        res.send(`{"error": Error deleting ${err}}`); 
-    } 
-};

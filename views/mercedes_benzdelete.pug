@@ -1,0 +1,53 @@
+extends layout 
+ 
+block content 
+  h1= title 
+ 
+  if (toShow == null) 
+    h2 No instance to delete 
+  else 
+    - let mercedes_benzid = toShow._id 
+    - let mercedes_benz_luxurious_name = toShow.mercedes_benz_luxurious_name
+    - let mercedes_benz_tire_size = toShow.mercedes_benz_tire_size
+    - let mercedes_benz_High_Beam_type = toShow.mercedes_benz_High_Beam_type
+    - let actionid = "/resource/mercedes_benz/" + mercedes_benzid 
+    script let actionid = "#{actionid}" 
+    div 
+      div.row 
+        div(class='mercedes_benzAttr mr-3') mercedes_benz ID is: 
+        div #{mercedes_benzid} 
+      div.row 
+        div(class='mercedes_benzAttr mr-3') mercedes_benz Type is: 
+        div #{mercedes_benz_luxurious_name} 
+      div.row 
+        div(class='mercedes_benzAttr mr-3') mercedes_benz Size is: 
+        div #{mercedes_benz_tire_size} 
+      div.row 
+        div(class='mercedes_benzAttr mr-3') mercedes_benz Cost is: 
+        div #{mercedes_benz_High_Beam_type} 
+ 
+    button(class="btn btn-danger m-2" onclick="deleteOnid()") Delete 
+    button(class="btn btn-secondary m-2" onclick="cancel()") Cancel 
+ 
+  script. 
+    function cancel() { 
+      // Go back to the home page for the mercedes_benz collection 
+      window.location.href='/mercedes_benz' 
+    } 
+  script. 
+    function deleteOnid() { 
+      console.log("starting delete") 
+      // delete first 
+      fetch(actionid, { 
+        method: 'DELETE'      // Dont need a body for the delete 
+      }).then((resp) => { 
+        return resp.json(); // or resp.text() or whatever the server sends 
+      }).then((body) => { 
+        alert("Delete succeded") 
+        window.location.href='/mercedes_benz' 
+        // TODO handle body 
+      }).catch((error) => { 
+        // TODO handle error 
+        alert("Delete failed " + error ) 
+      }); 
+    } 

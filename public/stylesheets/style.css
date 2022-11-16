@@ -10,3 +10,12 @@ a {
   background-color: aquamarine; 
   width: 120px; 
 } 
+#mercedes_benzForm {
+  background-color:rgb(98, 0, 255);
+  width: 325px;
+}
+
+h1{
+  color: rgb(0, 128, 53);
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}

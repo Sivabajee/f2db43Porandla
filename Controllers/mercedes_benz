@@ -139,4 +139,18 @@ exports.mercedes_benz_update_Page =  async function(req, res) {
         res.send(`{'error': '${err}'}`); 
     } 
 }; 
+
+// Handle a delete one view with id from query 
+exports.mercedes_benz_delete_Page = async function(req, res) { 
+    console.log("Delete view for id "  + req.query.id) 
+    try{ 
+        result = await mercedes_benz.findById(req.query.id) 
+        res.render('mercedes_benzdelete', { title: 'mercedes_benz Delete', toShow: 
+result }); 
+    } 
+    catch(err){ 
+        res.status(500) 
+        res.send(`{'error': '${err}'}`); 
+    } 
+}; 
  
