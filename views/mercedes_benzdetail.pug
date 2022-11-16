@@ -1,0 +1,22 @@
+extends layout 
+ 
+block content 
+  h1= title 
+ 
+  - let mercedes_benzid = toShow._id 
+  - let mercedes_benz_luxurious_name = toShow.mercedes_benz_luxurious_name
+  - let mercedes_benz_tire_size = toShow.mercedes_benz_tire_size 
+  - let mercedes_benz_High_Beam_type = toShow.mercedes_benz_High_Beam_type 
+  div 
+    div.row 
+      div(class='mercedes_benzAttr mr-3') mercedes_benz ID is: 
+      div #{mercedes_benzid} 
+    div.row 
+      div(class='mercedes_benzAttr mr-3') mercedes_benz car_name is: 
+      div #{mercedes_benz_luxurious_name } 
+    div.row 
+      div(class='mercedes_benzAttr mr-3') mercedes_benz car_tire is: 
+      div #{mercedes_benz_tire_size} 
+    div.row 
+      div(class='mercedes_benzAttr mr-3') mercedes_benz car_cost is: 
+      div #{mercedes_benz_High_Beam_type } 
