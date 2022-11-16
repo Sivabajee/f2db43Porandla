@@ -14,4 +14,6 @@ router.get('/', mercedes_benz_controlers.mercedes_benz_view_all_Page );
 router.get('/mercedes_benz/:id', mercedes_benz_controlers.mercedes_benz_detail); 
 /* GET detail mercedes_benz page */ 
 router.get('/detail', mercedes_benz_controlers.mercedes_benz_view_one_Page); 
+/* GET create mercedes_benz page */ 
+router.get('/create', mercedes_benz_controlers.mercedes_benz_create_Page); 
 module.exports = router;

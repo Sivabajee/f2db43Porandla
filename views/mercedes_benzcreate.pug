@@ -1,0 +1,34 @@
+extends layout 
+ 
+block content 
+  h1= title 
+ 
+  form(id='mercedes_benzForm', action="/resource/mercedes_benz", method="POST") 
+    div.form-group 
+        label.mercedes_benzAttr(for='mercedes_benz_luxurious_name') car_name 
+        input#mercedes_benz(type='text', name='mercedes_benz_luxurious_name') 
+    div.form-group 
+        label.mercedes_benzAttr(for='mercedes_benz_tire_size') tire_size
+        input#size(type='number', name='mercedes_benz_tire_size') 
+    div.form-group 
+        label.mercedes_benzAttr(for='mercedes_benz_High_Beam_type ') Beam_type 
+        input#cost(type='text', name='mercedes_benz_High_Beam_type ') 
+    input(type="submit") 
+ 
+  script. 
+    document.forms['mercedes_benzForm'].addEventListener('submit', (event) => { 
+      event.preventDefault(); 
+      // TODO do something here to show user that form is being submitted 
+      fetch(event.target.action, { 
+        method: 'POST', 
+        body: new URLSearchParams(new FormData(event.target)) // event.target is the form 
+      }).then((resp) => { 
+        return resp.json(); // or resp.text() or whatever the server sends 
+      }).then((body) => { 
+        alert("Save succeded") 
+        // TODO handle body 
+      }).catch((error) => { 
+        // TODO handle error 
+        alert("Save failed " + error ) 
+      }); 
+    }); 
